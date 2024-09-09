@@ -54,8 +54,8 @@ document.addEventListener("DOMContentLoaded", () => {
   // Append the modal to the document body
   document.body.appendChild(modal);
 
-  // Select the article element
-  const article = document.querySelector("article");
+  // Select the article element or use the entire page if article is undefined
+  const article = document.querySelector("article") || document.body;
   // Define the scroll depth thresholds (25%, 50%, 100%)
   const thresholds = [0.25, 0.5, 1.0];
   // Create a set to keep track of dispatched events
