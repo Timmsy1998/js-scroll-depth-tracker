@@ -17,13 +17,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
         window.dispatchEvent(event);
         dispatchedEvents.add(threshold);
-        displayAlert(threshold * 100);
+        displayModal(threshold * 100);
       }
     });
   };
 
-  const displayAlert = (percentage) => {
-    alert(`You have reached ${percentage}% of the article.`);
+  const displayModal = (percentage) => {
+    const modal = document.getElementById("scrollDepthModal");
+    const modalMessage = document.getElementById("modalMessage");
+    const closeBtn = document.querySelector(".close");
+
+    modalMessage.textContent = `You have reached ${percentage}% of the article.`;
+    modal.style.display = "block";
+
+    closeBtn.onclick = () => {
+      modal.style.display = "none";
+    };
+
+    window.onclick = (event) => {
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
   };
 
   window.addEventListener("scroll", throttle(handleScroll, 200));
